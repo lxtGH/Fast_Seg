@@ -59,7 +59,7 @@ def get_arguments():
     parser.add_argument('--gpu_num',type=int, default=8)
     parser.add_argument("--data_dir", type=str, default="./data",
                         help="Path to the directory containing the Cityscapes dataset.")
-    parser.add_argument("--data_list", type=str, default="./data/cityscapes/train.lst",
+    parser.add_argument("--data_list", type=str, default="./data/cityscapes/train.txt",
                         help="Path to the file listing the images in the dataset.")
     parser.add_argument("--data_set", type=str, default="cityscapes", help="dataset to train")
     parser.add_argument("--arch", type=str, default="CascadeRelatioNet_res50", help="network architecture")

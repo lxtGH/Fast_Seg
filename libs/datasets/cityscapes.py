@@ -11,7 +11,7 @@ from torch.utils import data
 
 
 class Cityscapes(data.Dataset):
-    def __init__(self, root, list_path="./list/cityscapes/train.lst", max_iters=None, crop_size=(321, 321),
+    def __init__(self, root, list_path="./list/cityscapes/train.txt", max_iters=None, crop_size=(321, 321),
                  mean=(128, 128, 128), vars=(1,1,1), scale=True, mirror=True, ignore_label=255, RGB=False):
         self.root = root
         self.list_path = list_path

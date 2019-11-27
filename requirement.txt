@@ -1,0 +1,4 @@
+apex
+opencv-python
+torch>=1.1.0
+torchvision
