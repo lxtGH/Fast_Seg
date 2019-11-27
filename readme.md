@@ -26,9 +26,14 @@ also provide some fast models.
 
 
 
+
+
 # Some Advice on Training
 1. use syn-bn(apex).
 2. use batch-size >=8.
 3. use deep supervised loss for easier optimation.
 4. use large crop size during training.
 5. longer training time for small models(60,0000 interaction or more).
+
+
+<p align="center"><img width="100%" src="./data/fig/frankfurt_000000_002196_leftImg8bit_pred.png" /></p>
