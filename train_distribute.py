@@ -1,5 +1,7 @@
+# Author: Xiangtai Li
+# Email: lxtpku@pku.edu.cn
 """
-    Distribute Training Code
+    Distribute Training Code For Fast training.
 """
 
 import argparse
@@ -145,7 +147,7 @@ def main():
         rewrite=args.rewrite,
         stdout_level=args.stdout_level
     )
-    # RGB or BGR input(RGB input for ImageNet pretrained model while BGR input for caffe pretrained model)
+    # RGB or BGR input(RGB input for ImageNet pretrained models while BGR input for caffe pretrained models)
     if args.rgb:
         IMG_MEAN = np.array((0.485, 0.456, 0.406), dtype=np.float32)
         IMG_VARS = np.array((0.229, 0.224, 0.225), dtype=np.float32)
@@ -153,7 +155,7 @@ def main():
         IMG_MEAN = np.array((104.00698793, 116.66876762, 122.67891434), dtype=np.float32)
         IMG_VARS = np.array((1, 1, 1), dtype=np.float32)
 
-    # set model
+    # set models
     import libs.models as models
     deeplab = models.__dict__[args.arch](num_classes=args.num_classes, data_set=args.data_set)
     if args.restore_from is not None:
@@ -164,7 +166,7 @@ def main():
             if not i_parts[0] == 'fc':
                 new_params['.'.join(i_parts[0:])] = saved_state_dict[i]
 
-        Log.info("load pretrined model")
+        Log.info("load pretrined models")
         deeplab.load_state_dict(new_params, strict=False)
 
     args.world_size = 1
@@ -186,7 +188,7 @@ def main():
     torch.distributed.init_process_group(backend='nccl',
                                          init_method='env://')
 
-    # set sync bn model
+    # set sync bn models
     # deeplab = apex.parallel.convert_syncbn_model(deeplab)
     deeplab = deeplab.cuda()
 
@@ -196,7 +198,7 @@ def main():
         lr=args.learning_rate, momentum=args.momentum, weight_decay=args.weight_decay)
     optimizer.zero_grad()
 
-    # model transformation
+    # models transformation
     model = DistributedDataParallel(deeplab)
     model = apex.parallel.convert_syncbn_model(model)
     model.train()
@@ -256,7 +258,7 @@ def main():
 
     if args.local_rank == 0:
         Log.info("Training cost: "+ str(end - start) + 'seconds')
-        Log.info("Save final model")
+        Log.info("Save final models")
         torch.save(deeplab.state_dict(), osp.join(args.save_dir, str(args.arch) + '_final' + '.pth'))
 
 

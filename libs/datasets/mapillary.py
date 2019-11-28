@@ -1,6 +1,5 @@
 # Author: Xiangtai Li
 # Email: lxtpku@pku.edu.cn
-# Copyright (c) 2019 DeepMotion
 
 import os
 import numpy as np
@@ -106,7 +105,7 @@ class MapDataSet(data.Dataset):
 
         if self.rgb:
             image = image[:, :, ::-1]  ## BGR -> RGB
-            image /= 255  ## using pytorch pretrained model
+            image /= 255  ## using pytorch pretrained models
 
         image -= self.mean
         image /= self.vars

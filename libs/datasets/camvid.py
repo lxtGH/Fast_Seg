@@ -1,6 +1,5 @@
 # Author: Xiangtai Li
 # Email: lxtpku@pku.edu.cn
-# Copyright (c) 2019 DeepMotion
 
 import os.path as osp
 import numpy as np
@@ -99,7 +98,7 @@ class CamVidDataSet(data.Dataset):
 
         if self.rgb:
             image = image[:,:, ::-1]  ## BGR -> RGB
-            image /= 255         ## using pytorch pretrained model
+            image /= 255         ## using pytorch pretrained models
 
         image -= self.mean
         image /= self.vars
@@ -185,7 +184,7 @@ class CamVidTestDataSet(data.Dataset):
 
         if self.rgb:
             image = image[:, :, ::-1]  ## BGR -> RGB
-            image /= 255  ## using pytorch pretrained model
+            image /= 255  ## using pytorch pretrained models
 
         image -= self.mean
         image /= self.vars
