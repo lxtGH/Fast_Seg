@@ -7,7 +7,7 @@ This repo aims to do experiments and verify the idea of fast semantic segmentati
 also provide some fast models.
  
 
-# Model Zoo 
+# Model Zoo (I will update model zoo soon)
 1. ICNet:ICnet for real-time semantic segmentation on high-resolution images.
 2. DF-Net: Partial Order Pruning: for Best Speed/Accuracy Trade-off in Neural Architecture Search.
 3. Bi-Seg: Bilateral segmentation network for real-time semantic segmentation.
