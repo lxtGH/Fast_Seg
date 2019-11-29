@@ -157,3 +157,5 @@ class BiSeNet(nn.Module):
             return pred_out
 
         return F.log_softmax(self.heads[-1](pred_out[-1]), dim=1)
+
+

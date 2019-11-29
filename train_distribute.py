@@ -34,10 +34,6 @@ except ImportError:
 
 
 
-start = timeit.default_timer()
-
-
-
 def str2bool(v):
     if v.lower() in ('yes', 'true', 't', 'y', '1'):
         return True
@@ -104,9 +100,9 @@ def get_arguments():
     # **** Params for OHEM **** #
     parser.add_argument("--ohem", type=str2bool, default='False',
                         help="use hard negative mining")
-    parser.add_argument("--ohem_thres", type=float, default=0.6,
+    parser.add_argument("--ohem_thres", type=float, default=0.7,
                         help="choose the samples with correct probability underthe threshold.")
-    parser.add_argument("--ohem_keep", type=int, default=200000,
+    parser.add_argument("--ohem_keep", type=int, default=100000,
                         help="choose the samples with correct probability underthe threshold.")
     # ***** Params for logging ***** #
     parser.add_argument('--log_level', default="info", type=str,
@@ -129,6 +125,8 @@ def get_arguments():
     args = parser.parse_args()
     return args
 
+
+start = timeit.default_timer()
 
 args = get_arguments()
 
@@ -184,14 +182,9 @@ def main():
 
      # Set the device according to local_rank.
     torch.cuda.set_device(args.local_rank)
-    Log.info("My Rank: {}".format(args.local_rank))
+    Log.info("Local Rank: {}".format(args.local_rank))
     torch.distributed.init_process_group(backend='nccl',
                                          init_method='env://')
-
-    # set sync bn models
-    # deeplab = apex.parallel.convert_syncbn_model(deeplab)
-    deeplab = deeplab.cuda()
-
     # set optimizer
     optimizer = optim.SGD(
         [{'params': filter(lambda p: p.requires_grad, deeplab.parameters()), 'lr': args.learning_rate}],
@@ -260,7 +253,6 @@ def main():
         Log.info("Training cost: "+ str(end - start) + 'seconds')
         Log.info("Save final models")
         torch.save(deeplab.state_dict(), osp.join(args.save_dir, str(args.arch) + '_final' + '.pth'))
-
 
 
 if __name__ == '__main__':

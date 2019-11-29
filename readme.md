@@ -26,8 +26,6 @@ also provide some fast models.
 3. use eval.py for evaluation on validation dataset.
 
 
-
-
 ## Datasets Perparation
 - You can download [cityscapes] dataset (https://www.cityscapes-dataset.com/) from [here](https://www.cityscapes-dataset.com/downloads/). Note: please download [leftImg8bit_trainvaltest.zip(11GB)](https://www.cityscapes-dataset.com/file-handling/?packageID=4) and [gtFine_trainvaltest(241MB)](https://www.cityscapes-dataset.com/file-handling/?packageID=1).
 - You can download camvid dataset from [here](https://github.com/alexgkendall/SegNet-Tutorial/tree/master/CamVid).
@@ -37,7 +35,7 @@ also provide some fast models.
 1. use syn-bn(apex).
 2. use batch-size >=8.
 3. use deep supervised loss for easier optimation.
-4. use large crop size during training.
+4. use large crop size during training. 
 5. longer training time for small models(60,000 interaction or more).
 6. use Mapillary data for pretraining for boosting performance.
 7. Deeply based resnet runs slowly than torch pretrained resnet but with higher accuracy.
@@ -50,3 +48,8 @@ also provide some fast models.
 This project is released under the Apache 2.0 license.
 
 
+# Acknowledgement
+
+Thanks to previous open-sourced repo:  
+[Encoding](https://github.com/zhanghang1989/PyTorch-Encoding)  
+[CCNet](https://github.com/speedinghzl/CCNet)
