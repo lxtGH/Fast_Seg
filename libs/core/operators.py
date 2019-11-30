@@ -7,6 +7,14 @@ import torch.nn.functional as F
 from torch.nn import BatchNorm2d
 
 
+upsample = lambda x, size: F.interpolate(x, size, mode='bilinear', align_corners=True)
+
+
+def conv3x3(in_planes, out_planes, stride=1):
+    """3x3 convolution with padding"""
+    return nn.Conv2d(in_planes, out_planes, kernel_size=3, stride=stride,
+                     padding=1, bias=False)
+
 class GlobalAvgPool2d(nn.Module):
     def __init__(self):
         """Global average pooling over the input's spatial dimensions"""
@@ -40,7 +48,7 @@ class SELayer(nn.Module):
 
 
 class ConvBnRelu(nn.Module):
-    def __init__(self, in_planes, out_planes, ksize, stride, pad, dilation=1,
+    def __init__(self, in_planes, out_planes, ksize, stride=1, pad=0, dilation=1,
                  groups=1, has_bn=True, norm_layer=nn.BatchNorm2d, bn_eps=1e-5,
                  has_relu=True, inplace=True, has_bias=False):
         super(ConvBnRelu, self).__init__()
@@ -62,6 +70,43 @@ class ConvBnRelu(nn.Module):
             x = self.relu(x)
 
         return x
+
+def dsn(in_channels, nclass, norm_layer=nn.BatchNorm2d):
+    return nn.Sequential(
+        nn.Conv2d(in_channels, in_channels, kernel_size=3, stride=1, padding=1),
+        norm_layer(in_channels),
+        nn.ReLU(),
+        nn.Dropout2d(0.1),
+        nn.Conv2d(in_channels, nclass, kernel_size=1, stride=1, padding=0, bias=True)
+    )
+
+
+class SeparableConv2d(nn.Module):
+    def __init__(self, in_channels, out_channels, kernel_size=3, stride=1, dilation=1, bias=False, norm_layer=None):
+        super(SeparableConv2d, self).__init__()
+        self.kernel_size = kernel_size
+        self.dilation = dilation
+
+        self.conv1 = nn.Conv2d(in_channels, in_channels, kernel_size, stride, 0, dilation, groups=in_channels,
+                               bias=bias)
+        self.bn = norm_layer(in_channels)
+        self.pointwise = nn.Conv2d(in_channels, out_channels, 1, bias=bias)
+
+    def forward(self, x):
+        x = self.fix_padding(x, self.kernel_size, self.dilation)
+        x = self.conv1(x)
+        x = self.bn(x)
+        x = self.pointwise(x)
+
+        return x
+
+    def fix_padding(self, x, kernel_size, dilation):
+        kernel_size_effective = kernel_size + (kernel_size - 1) * (dilation - 1)
+        pad_total = kernel_size_effective - 1
+        pad_beg = pad_total // 2
+        pad_end = pad_total - pad_beg
+        padded_inputs = F.pad(x, (pad_beg, pad_end, pad_beg, pad_end))
+        return padded_inputs
 
 
 class ASPPModule(nn.Module):
@@ -115,6 +160,9 @@ class ASPPModule(nn.Module):
 
 
 class A2Block(nn.Module):
+    """
+        Implementation of A2Block(NIPS 2018)
+    """
     def __init__(self, inplane, plane):
         super(A2Block, self).__init__()
         self.down = nn.Conv2d(inplane, plane, 1)
@@ -155,7 +203,6 @@ class PSPModule(nn.Module):
     """
     def __init__(self, features, out_features=512, sizes=(1, 2, 3, 6), norm_layer=BatchNorm2d):
         super(PSPModule, self).__init__()
-
         self.stages = []
         self.stages = nn.ModuleList([self._make_stage(features, out_features, size, norm_layer) for size in sizes])
         self.bottleneck = nn.Sequential(
@@ -178,29 +225,6 @@ class PSPModule(nn.Module):
         return bottle
 
 
-class ConvBnRelu(nn.Module):
-    def __init__(self, in_planes, out_planes, ksize, stride, pad, dilation=1,
-                 groups=1, has_bn=True, norm_layer=nn.BatchNorm2d, bn_eps=1e-5,
-                 has_relu=True, inplace=True, has_bias=False):
-        super(ConvBnRelu, self).__init__()
-        self.conv = nn.Conv2d(in_planes, out_planes, kernel_size=ksize,
-                              stride=stride, padding=pad,
-                              dilation=dilation, groups=groups, bias=has_bias)
-        self.has_bn = has_bn
-        if self.has_bn:
-            self.bn = norm_layer(out_planes, eps=bn_eps)
-        self.has_relu = has_relu
-        if self.has_relu:
-            self.relu = nn.ReLU(inplace=inplace)
-
-    def forward(self, x):
-        x = self.conv(x)
-        if self.has_bn:
-            x = self.bn(x)
-        if self.has_relu:
-            x = self.relu(x)
-
-        return x
 
 
 # For BiSeNet
@@ -251,3 +275,5 @@ class FeatureFusion(nn.Module):
         fm_se = self.channel_attention(fm)
         output = fm + fm * fm_se
         return output
+
+

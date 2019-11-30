@@ -1,9 +1,11 @@
 # @Author: yuchangqian
 # Modified: XiangtaiLi
 
+import torch
 import torch.nn as nn
 import torch.nn.functional as F
 
+from libs.models.backbone.resnet import resnet18
 from libs.core.operators import ConvBnRelu, FeatureFusion, AttentionRefinement
 
 
@@ -71,10 +73,10 @@ class BiSeNet(nn.Module):
                   pretrained_model=None,
                  norm_layer=nn.BatchNorm2d):
         super(BiSeNet, self).__init__()
-        self.context_path = resnet18(pretrained_model, norm_layer=norm_layer,
+        self.backbone = resnet18(pretrained_model, norm_layer=norm_layer,
                                      bn_eps=1e-5,
                                      bn_momentum=0.1,
-                                     deep_stem=False, stem_width=64)
+                                     deep_stem=True, stem_width=64)
 
         self.business_layer = []
         self.is_training = is_training
@@ -129,7 +131,7 @@ class BiSeNet(nn.Module):
     def forward(self, data, label=None):
         spatial_out = self.spatial_path(data)
 
-        context_blocks = self.context_path(data)
+        context_blocks = self.backbone(data)
         context_blocks.reverse()
 
         global_context = self.global_context(context_blocks[0])
@@ -159,3 +161,9 @@ class BiSeNet(nn.Module):
         return F.log_softmax(self.heads[-1](pred_out[-1]), dim=1)
 
 
+if __name__ == '__main__':
+    i = torch.Tensor(1,3,512,512).cuda()
+    m = BiSeNet(19).cuda()
+    m.eval()
+    o = m(i)
+    print(o.size())

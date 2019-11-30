@@ -7,7 +7,6 @@ import numpy as np
 import datetime
 
 
-from libs.utils.image_utils import resize_image, flip_image, crop_image
 import libs.models as models
 
 

@@ -1,6 +1,8 @@
 from __future__ import print_function, division, absolute_import
 
 import math
+
+import torch
 import torch.nn as nn
 from torch.nn import BatchNorm2d
 
@@ -94,11 +96,11 @@ class dfnetv1(nn.Module):
     def forward(self, x):
         x = self.stage1(x)  # 4x32
         x = self.stage2(x)  # 8x64
-        x = self.stage3(x)  # 16x128
-        x = self.stage4(x)  # 32x256
-        x = self.stage5(x)  # 32x512
+        x3 = self.stage3(x)  # 16x128
+        x4 = self.stage4(x3)  # 32x256
+        x5 = self.stage5(x4)  # 32x512
 
-        return x
+        return x3, x4, x5
 
 
 class dfnetv2(nn.Module):
@@ -152,10 +154,16 @@ class dfnetv2(nn.Module):
     def forward(self, x):
         x = self.stage1(x)  # 4x32
         x = self.stage2_1(x)  # 8x64
-        x = self.stage2_2(x)  # 8x64
-        x = self.stage3_1(x)  # 16x128
-        x = self.stage3_2(x)  # 16x128
-        x = self.stage4_1(x)  # 32x256
-        x = self.stage4_2(x)  # 32x256
-        return x
+        x3 = self.stage2_2(x)  # 8x64
+        x4 = self.stage3_1(x3)  # 16x128
+        x4 = self.stage3_2(x4)  # 16x128
+        x5 = self.stage4_1(x4)  # 32x256
+        x5 = self.stage4_2(x5)  # 32x256
+        return x3,x4,x5
+
+
+if __name__ == '__main__':
+    i = torch.Tensor(1,3,512,512).cuda()
+    m = dfnetv2().cuda()
+    m(i)
 

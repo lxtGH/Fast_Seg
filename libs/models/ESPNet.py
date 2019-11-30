@@ -1,4 +1,4 @@
-# "Sachin Mehta"
+# Author: "Sachin Mehta"
 import torch
 import torch.nn as nn
 

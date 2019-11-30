@@ -166,6 +166,8 @@ def main():
 
         Log.info("load pretrined models")
         deeplab.load_state_dict(new_params, strict=False)
+    else:
+        Log.info("train from stracth")
 
     args.world_size = 1
 

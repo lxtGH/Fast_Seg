@@ -1,3 +1,5 @@
+# Author: Xiangtai Li
+# Email: lxtpku@pku.edu.cn
 
 import torch
 import torch.nn as nn
@@ -22,7 +24,6 @@ class FastSCNN(nn.Module):
             )
 
     def forward(self, x):
-        size = x.size()[2:]
         higher_res_features = self.learning_to_downsample(x)
         x = self.global_feature_extractor(higher_res_features)
         x = self.feature_fusion(higher_res_features, x)
@@ -205,7 +206,6 @@ class FeatureFusionModule(nn.Module):
 
 class Classifer(nn.Module):
     """Classifer"""
-
     def __init__(self, dw_channels, num_classes, stride=1, **kwargs):
         super(Classifer, self).__init__()
         self.dsconv1 = _DSConv(dw_channels, dw_channels, stride)
