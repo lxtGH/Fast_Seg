@@ -29,7 +29,7 @@ try:
     from apex.parallel import DistributedDataParallel, SyncBatchNorm
 except ImportError:
     raise ImportError(
-        "Please install apex from https://www.github.com/nvidia/apex .")
+        "Please install apex from https://www.github.com/nvidia/apex.")
 
 
 
@@ -163,9 +163,11 @@ def main():
             i_parts = i.split('.')
             if not i_parts[0] == 'fc':
                 new_params['.'.join(i_parts[0:])] = saved_state_dict[i]
-
         Log.info("load pretrined models")
-        deeplab.load_state_dict(new_params, strict=False)
+        if deeplab.backbone is not None:
+            deeplab.backbone.load_state_dict(new_params, strict=False)
+        else:
+            deeplab.load_state_dict(new_params, strict=False)
     else:
         Log.info("train from stracth")
 

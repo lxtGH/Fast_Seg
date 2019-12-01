@@ -1,13 +1,16 @@
 # Note: still building(please wait a couple of days)
 
 # What is Fast_Seg?
-This repo try to implement state-of-art fast semantic segmentation models on road scene dataset(CityScape, Camvid).
+This repo try to implement **state-of-art fast** semantic segmentation models on **road scene dataset**(CityScape, Map).
 
 
 # What is purpose of this repo?
 This repo aims to do experiments and verify the idea of fast semantic segmentation and this repo
 also provide some fast models.
  
+# Another Link For Accurate Seg: 
+[GALD-net](https://github.com/lxtGH/GALD-Net)
+
 
 # Model Zoo (Updating)
 1. ICNet:ICnet for real-time semantic segmentation on high-resolution images.
@@ -48,8 +51,11 @@ also provide some fast models.
 This project is released under the Apache 2.0 license.
 
 
+
+
 # Acknowledgement
 
 Thanks to previous open-sourced repo:  
 [Encoding](https://github.com/zhanghang1989/PyTorch-Encoding)  
 [CCNet](https://github.com/speedinghzl/CCNet)
+[pytorchseg](https://github.com/meetshah1995/pytorch-semseg)
