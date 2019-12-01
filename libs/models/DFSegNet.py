@@ -2,6 +2,7 @@
 # Email: lxtpku@pku.edu.cn
 # Pytorch Implementation of DongFeng SegNet:
 # Partial Order Pruning: for Best Speed/Accuracy Trade-off in Neural Architecture Search.
+# The backbone is pretrained on ImageNet
 
 import torch
 import torch.nn as nn

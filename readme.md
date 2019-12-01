@@ -1,7 +1,9 @@
 # Note: still building(please wait a couple of days)
 
 # What is Fast_Seg?
-This repo try to implement **state-of-art fast** semantic segmentation models on **road scene dataset**(CityScape, Map).
+
+This repo try to implement **state-of-art fast** semantic segmentation models on **road scene dataset**(CityScape, 
+Mapillary, Camvid).
 
 
 # What is purpose of this repo?
@@ -9,18 +11,19 @@ This repo aims to do experiments and verify the idea of fast semantic segmentati
 also provide some fast models.
  
 # Another Link For Accurate Seg: 
-[GALD-net](https://github.com/lxtGH/GALD-Net)
+[GALD-net](https://github.com/lxtGH/GALD-Net) provides some state-of-art accurate methods implementation.
+
 
 
 # Model Zoo (Updating)
-1. ICNet:ICnet for real-time semantic segmentation on high-resolution images.
-2. DF-Net: Partial Order Pruning: for Best Speed/Accuracy Trade-off in Neural Architecture Search.
-3. Bi-Seg: Bilateral segmentation network for real-time semantic segmentation.
-4. DFA-Net: Deep feature aggregation for real-time semantic segmentation.
-5. ESP-Net: Efficient Spatial Pyramid of Dilated Convolutions for Semantic Segmentation
-6. SwiftNet: In defense of pre-trained imagenet architectures for real-time semantic segmentation of road-driving images.
-7. Real-Time Semantic Segmentation via Multiply Spatial Fusion Network
-8. Fast-SCNN: Fast Semantic Segmentation Network 
+1. ICNet:ICnet for real-time semantic segmentation on high-resolution images. ECCV-2018, [paper](https://arxiv.org/abs/1704.08545)  
+2. DF-Net: Partial Order Pruning: for Best Speed/Accuracy Trade-off in Neural Architecture Search.CVPR-2019, [paper](https://arxiv.org/abs/1903.03777)   
+3. Bi-Seg: Bilateral segmentation network for real-time semantic segmentation.ECCV-2018, [paper](https://arxiv.org/pdf/1808.00897.pdf)  
+4. DFA-Net: Deep feature aggregation for real-time semantic segmentation.CVPR-2019,[paper](https://arxiv.org/abs/1904.02216)  
+5. ESP-Net: Efficient Spatial Pyramid of Dilated Convolutions for Semantic Segmentation. ECCV-2018,[paper](https://arxiv.org/abs/1803.06815)  
+6. SwiftNet: In defense of pre-trained imagenet architectures for real-time semantic segmentation of road-driving images. CVPR2019, [paper](http://openaccess.thecvf.com/content_CVPR_2019/papers/Orsic_In_Defense_of_Pre-Trained_ImageNet_Architectures_for_Real-Time_Semantic_Segmentation_CVPR_2019_paper.pdf)  
+7. Real-Time Semantic Segmentation via Multiply Spatial Fusion Network.(face++) arxiv,[paper](https://arxiv.org/abs/1911.07217)  
+8. Fast-SCNN: Fast Semantic Segmentation Network.BMVC-2019 [paper](https://arxiv.org/abs/1902.04502)  
 
 
 # Usage
@@ -42,6 +45,7 @@ also provide some fast models.
 5. longer training time for small models(60,000 interaction or more).
 6. use Mapillary data for pretraining for boosting performance.
 7. Deeply based resnet runs slowly than torch pretrained resnet but with higher accuracy.
+8. The small network doesn't need ImageNet pretraining if training longer time on Cityscape.(Fast-SCNN paper)
 
 
 <img src="./data/fig/frankfurt_000000_002196_leftImg8bit.png" width="290" /><img src="./data/fig/frankfurt_000000_002196_gtFine_color.png" width="290" /><img src="./data/fig/frankfurt_000000_002196_leftImg8bit_pred.png" width="290" />
@@ -56,6 +60,7 @@ This project is released under the Apache 2.0 license.
 # Acknowledgement
 
 Thanks to previous open-sourced repo:  
-[Encoding](https://github.com/zhanghang1989/PyTorch-Encoding)  
-[CCNet](https://github.com/speedinghzl/CCNet)
-[pytorchseg](https://github.com/meetshah1995/pytorch-semseg)
+[Encoding](https://github.com/zhanghang1989/PyTorch-Encoding)    
+[CCNet](https://github.com/speedinghzl/CCNet)   
+[TorchSeg](https://github.com/ycszen/TorchSeg)  
+[pytorchseg](https://github.com/meetshah1995/pytorch-semseg) 

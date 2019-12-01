@@ -32,8 +32,6 @@ except ImportError:
         "Please install apex from https://www.github.com/nvidia/apex.")
 
 
-
-
 def str2bool(v):
     if v.lower() in ('yes', 'true', 't', 'y', '1'):
         return True

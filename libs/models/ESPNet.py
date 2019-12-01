@@ -1,4 +1,5 @@
 # Author: "Sachin Mehta"
+# ESPNet doesn't use pretrained backbone network while usually takes longer training time.
 import torch
 import torch.nn as nn
 

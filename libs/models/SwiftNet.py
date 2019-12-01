@@ -1,10 +1,11 @@
 # Author: Xiangtai Li
 # Email: lxtpku@pku.edu.cn
 """
-    SwifitNet is a little different
+    SwiftNet is a little different
     1. because it use the pre-activation input as lateral feature input.
     The backbone need writing for easier experiment
     2. I also add dsn head for easier training during the decoder upsample process.
+    3. SwiftNet use torch pretrained backbone.
 """
 
 import torch

@@ -2,6 +2,7 @@
 # Email: lxtpku@pku.edu.cn
 """
     Implementation of DFANet: a little different from the origin paper, I add more dsn loss for training.
+    DFANet uses modified Xception backbone pretrained on ImageNet.
 """
 import torch
 import torch.nn as nn

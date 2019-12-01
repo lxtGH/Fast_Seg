@@ -1,5 +1,6 @@
 # @Author: yuchangqian
 # Modified: XiangtaiLi
+# BiSeg uses deeply based backbone.
 
 import torch
 import torch.nn as nn
