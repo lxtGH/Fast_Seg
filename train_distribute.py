@@ -20,7 +20,7 @@ from libs.utils.logger import Logger as Log
 from libs.utils.tools import adjust_learning_rate, all_reduce_tensor
 from libs.datasets.cityscapes import Cityscapes
 
-from libs.core.loss import CriterionOhemDSN, CriterionDSN, CriterionICNet
+from libs.core.loss import CriterionOhemDSN, CriterionDSN, CriterionICNet, CriterionDFANet
 
 
 try:
@@ -207,8 +207,10 @@ def main():
     # set loss function
     if args.ohem:
         criterion = CriterionOhemDSN(thresh=args.ohem_thres, min_kept=args.ohem_keep)  # OHEM CrossEntrop
-        if "IC" in args.arch:
+        if "ic" in args.arch:
             criterion = CriterionICNet(thresh=args.ohem_thres, min_kept=args.ohem_keep)
+        if "dfa" in args.arch:
+            criterion = CriterionDFANet(thresh=args.ohem_thres, min_kept=args.ohem_keep)
     else:
         criterion = CriterionDSN()  # CrossEntropy
     criterion.cuda()

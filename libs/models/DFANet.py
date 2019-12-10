@@ -93,6 +93,9 @@ class DFANet(nn.Module):
         outputs.append(dsn2)
         return outputs
 
+def dfanet(num_classes=19, data_set="cityscapes"):
+    return DFANet(num_classes)
+
 
 if __name__ == '__main__':
     i = torch.Tensor(1,3,512,512).cuda()

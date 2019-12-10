@@ -58,6 +58,14 @@ class DFSeg(nn.Module):
         return [out]
 
 
+def dfnetv1seg(num_classes=19, data_set="cityscapes"):
+    return DFSeg(num_classes,type="dfv1")
+
+
+def dfnetv2seg(num_classes=19, data_set="cityscapes"):
+    return DFSeg(num_classes,type="dfv2")
+
+
 if __name__ == '__main__':
     i = torch.Tensor(1,3,512,512).cuda()
     m = DFSeg(19,"dfv2").cuda()
