@@ -118,10 +118,10 @@ class CriterionICNet(nn.Module):
         scale_pred = F.upsample(input=preds[1], size=(h, w), mode='bilinear', align_corners=True)
         loss2 = self.criterion1(scale_pred, target)
 
-        scale_pred = F.upsample(input=preds[0], size=(h, w), mode='bilinear', align_corners=True)
+        scale_pred = F.upsample(input=preds[2], size=(h, w), mode='bilinear', align_corners=True)
         loss3 = self.criterion1(scale_pred, target)
 
-        scale_pred = F.upsample(input=preds[1], size=(h, w), mode='bilinear', align_corners=True)
+        scale_pred = F.upsample(input=preds[3], size=(h, w), mode='bilinear', align_corners=True)
         loss4 = self.criterion1(scale_pred, target)
 
         return loss1 + 0.4 * loss2 + 0.4 * loss3 + 0.4 * loss4
