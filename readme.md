@@ -1,6 +1,6 @@
 # Note: still building(please wait a couple of days)
 
-# What is Fast_Seg?
+# What is Fast_Seg:zap:?
 
 This repo try to implement **state-of-art fast** semantic segmentation models on **road scene dataset**(CityScape, 
 Mapillary, Camvid).
