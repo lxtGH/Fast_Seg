@@ -20,7 +20,7 @@ from libs.utils.logger import Logger as Log
 from libs.utils.tools import adjust_learning_rate, all_reduce_tensor
 from libs.datasets.cityscapes import Cityscapes
 
-from libs.core.loss import CriterionOhemDSN, CriterionDSN
+from libs.core.loss import CriterionOhemDSN, CriterionDSN, CriterionICNet
 
 
 try:
@@ -155,7 +155,7 @@ def main():
     import libs.models as models
     deeplab = models.__dict__[args.arch](num_classes=args.num_classes, data_set=args.data_set)
     if args.restore_from is not None:
-        saved_state_dict = torch.load(args.restore_from,map_location=torch.device('cpu'))
+        saved_state_dict = torch.load(args.restore_from, map_location=torch.device('cpu'))
         new_params = deeplab.state_dict().copy()
         for i in saved_state_dict:
             i_parts = i.split('.')
@@ -168,6 +168,7 @@ def main():
             deeplab.load_state_dict(new_params, strict=False)
     else:
         Log.info("train from stracth")
+
 
     args.world_size = 1
 
@@ -193,6 +194,9 @@ def main():
         lr=args.learning_rate, momentum=args.momentum, weight_decay=args.weight_decay)
     optimizer.zero_grad()
 
+    # set on cuda
+    deeplab.cuda()
+
     # models transformation
     model = DistributedDataParallel(deeplab)
     model = apex.parallel.convert_syncbn_model(model)
@@ -203,6 +207,8 @@ def main():
     # set loss function
     if args.ohem:
         criterion = CriterionOhemDSN(thresh=args.ohem_thres, min_kept=args.ohem_keep)  # OHEM CrossEntrop
+        if "IC" in args.arch:
+            criterion = CriterionICNet(thresh=args.ohem_thres, min_kept=args.ohem_keep)
     else:
         criterion = CriterionDSN()  # CrossEntropy
     criterion.cuda()

@@ -103,10 +103,16 @@ class ICNet(nn.Module):
         return res
 
 
+def icnet(num_classes=19, data_set="cityscape"):
+    return ICNet(num_classes)
+
+
+
 if __name__ == '__main__':
     i = torch.Tensor(1,3,512,512).cuda()
     m = ICNet(19).cuda()
     m.eval()
     res= m(i)
+    print("ICnet output length: ", len(res))
     for i in res:
         print(i.size())

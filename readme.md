@@ -35,6 +35,7 @@ also provide some fast models.
 ## Datasets Perparation
 - You can download [cityscapes] dataset (https://www.cityscapes-dataset.com/) from [here](https://www.cityscapes-dataset.com/downloads/). Note: please download [leftImg8bit_trainvaltest.zip(11GB)](https://www.cityscapes-dataset.com/file-handling/?packageID=4) and [gtFine_trainvaltest(241MB)](https://www.cityscapes-dataset.com/file-handling/?packageID=1).
 - You can download camvid dataset from [here](https://github.com/alexgkendall/SegNet-Tutorial/tree/master/CamVid).
+- You can download pretrained XceptionA [here](), and ResNet18 with bgr input [here]().
 
 
 # Some Advice on Training
