@@ -10,7 +10,7 @@ Mapillary, Camvid).
 This repo aims to do experiments and verify the idea of fast semantic segmentation and this repo
 also provide some fast models.  
  
-Our ICnet implementation achieves **74.5% mIoU** which is **5%** point higher than orginal paper. !!!!!  
+Our ICnet implementation achieves **74.5% mIoU** which is **5%** point higher than orginal paper. !!!!!  (model)[https://drive.google.com/open?id=1A6z87_GCHEuKeZfbGpEvnkZ0POdW2Q_U]
 
 # Another Link For Accurate Seg: 
 [GALD-net](https://github.com/lxtGH/GALD-Net) provides some state-of-art accurate methods implementation.   
