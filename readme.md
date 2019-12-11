@@ -8,15 +8,15 @@ Mapillary, Camvid).
 
 # What is purpose of this repo?
 This repo aims to do experiments and verify the idea of fast semantic segmentation and this repo
-also provide some fast models.
+also provide some fast models.  
  
+Our ICnet achieves **74.5% mIoU** which is **5%** point higher than orginal paper. !!!!!  
+
 # Another Link For Accurate Seg: 
-[GALD-net](https://github.com/lxtGH/GALD-Net) provides some state-of-art accurate methods implementation.
-
-
+[GALD-net](https://github.com/lxtGH/GALD-Net) provides some state-of-art accurate methods implementation.   
 
 # Model Zoo (Updating)
-1. ICNet:ICnet for real-time semantic segmentation on high-resolution images. ECCV-2018, [paper](https://arxiv.org/abs/1704.08545)  
+1. ICNet:ICnet for real-time semantic segmentation on high-resolution images. ECCV-2018, [paper](https://arxiv.org/abs/1704.08545) 
 2. DF-Net: Partial Order Pruning: for Best Speed/Accuracy Trade-off in Neural Architecture Search.CVPR-2019, [paper](https://arxiv.org/abs/1903.03777)   
 3. Bi-Seg: Bilateral segmentation network for real-time semantic segmentation.ECCV-2018, [paper](https://arxiv.org/pdf/1808.00897.pdf)  
 4. DFA-Net: Deep feature aggregation for real-time semantic segmentation.CVPR-2019,[paper](https://arxiv.org/abs/1904.02216)  
@@ -24,6 +24,9 @@ also provide some fast models.
 6. SwiftNet: In defense of pre-trained imagenet architectures for real-time semantic segmentation of road-driving images. CVPR2019, [paper](http://openaccess.thecvf.com/content_CVPR_2019/papers/Orsic_In_Defense_of_Pre-Trained_ImageNet_Architectures_for_Real-Time_Semantic_Segmentation_CVPR_2019_paper.pdf)  
 7. Real-Time Semantic Segmentation via Multiply Spatial Fusion Network.(face++) arxiv,[paper](https://arxiv.org/abs/1911.07217)  
 8. Fast-SCNN: Fast Semantic Segmentation Network.BMVC-2019 [paper](https://arxiv.org/abs/1902.04502)  
+
+
+
 
 
 # Usage
