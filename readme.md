@@ -2,7 +2,7 @@
 
 # :zap:Fast_Seg:zap:
 
-This repo try to implement **state-of-art fast** semantic segmentation models on **road scene dataset**(CityScape, 
+This repo try to implement **state-of-art fast semantic segmentation model** s on **road scene dataset**(CityScape, 
 Mapillary, Camvid).
 
 
