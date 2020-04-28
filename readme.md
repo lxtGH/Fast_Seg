@@ -28,7 +28,6 @@ Our ICnet implementation achieves **74.5% mIoU** which is **5%** point higher th
 
 
 
-
 # Usage
 1. use train_distribute.py for training For example, use scripts in exp floder for training and evaluation.
 2. use prediction_test_different_size.py for prediction with different size input.
@@ -37,7 +36,8 @@ Our ICnet implementation achieves **74.5% mIoU** which is **5%** point higher th
 ## Datasets Perparation
 - You can download [cityscapes] dataset (https://www.cityscapes-dataset.com/) from [here](https://www.cityscapes-dataset.com/downloads/). Note: please download [leftImg8bit_trainvaltest.zip(11GB)](https://www.cityscapes-dataset.com/file-handling/?packageID=4) and [gtFine_trainvaltest(241MB)](https://www.cityscapes-dataset.com/file-handling/?packageID=1).
 - You can download camvid dataset from [here](https://github.com/alexgkendall/SegNet-Tutorial/tree/master/CamVid).
-- You can download pretrained XceptionA [here](), and ResNet18 with bgr input [here]() and ResNet50 with bgr input [here]().
+- You can download pretrained XceptionA with RGB input and ResNet18 with bgr input  and ResNet50 with bgr input
+[link]:(https://pan.baidu.com/s/1mM_Lc44iX9CT1nPq6tjOAA)  password:bnfv.
 
 
 # Some Advice on Training
