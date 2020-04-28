@@ -235,7 +235,7 @@ def val():
     for index, batch in enumerate(testloader):
         if index % 100 == 0:
             print('%d processd' % (index))
-        image, label, size, name = batch
+        image, label = batch
         size = size[0].numpy()
         with torch.no_grad():
             if args.whole:
