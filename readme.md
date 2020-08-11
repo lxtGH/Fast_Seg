@@ -38,6 +38,7 @@ Our ICnet implementation achieves **74.5% mIoU** which is **5%** point higher th
 - You can download camvid dataset from [here](https://github.com/alexgkendall/SegNet-Tutorial/tree/master/CamVid).
 - You can download pretrained XceptionA with RGB input and ResNet18 with bgr input  and ResNet50 with bgr input
 [link]:(https://pan.baidu.com/s/1mM_Lc44iX9CT1nPq6tjOAA)  password:bnfv.
+or ['link']:(https://drive.google.com/file/d/166ANLmlV5cQTkmzD0pngc8leOQUR_32n/view?usp=sharing,%20https://drive.google.com/file/d/1A6z87_GCHEuKeZfbGpEvnkZ0POdW2Q_U/view?usp=sharing,%20https://drive.google.com/file/d/1P_d9T__kTKIEFK8ElQFq0cZ1XKx1gMGn/view?usp=sharing,%20https://drive.google.com/file/d/1y4TuRod_F9NEeBQ1fo9GI-WLETS-b1jF/view?usp=sharing)
 
 
 # Some Advice on Training
