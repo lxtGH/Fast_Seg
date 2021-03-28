@@ -194,8 +194,6 @@ def val():
     """Create the models and start the evaluation process."""
     args = get_arguments()
 
-    # gpu0 = args.gpu
-    # os.environ["CUDA_VISIBLE_DE VICES"] = args.gpu
     h, w = args.input_size, args.input_size
     if args.whole:
         input_size = (1024, 2048)
@@ -220,8 +218,6 @@ def val():
     testloader = data.DataLoader(dataset, batch_size=1, shuffle=False, pin_memory=True)
 
     confusion_matrix = np.zeros((args.num_classes, args.num_classes))
-    palette = get_palette(256)
-    interp = nn.Upsample(size=(1024, 2048), mode='bilinear', align_corners=True)
 
     output_images = os.path.join(args.output_dir, "./images")
     output_results = os.path.join(args.output_dir, "./result")
@@ -236,7 +232,7 @@ def val():
         if index % 100 == 0:
             print('%d processd' % (index))
         image, label = batch
-        size = size[0].numpy()
+        size = image[0].size()[-2:]
         with torch.no_grad():
             if args.whole:
                 output = predict_multiscale(model, image, input_size, [1.0], args.num_classes, False)
@@ -244,9 +240,6 @@ def val():
                 output = predict_sliding(model, image.numpy(), input_size, args.num_classes, True)
 
         seg_pred = np.asarray(np.argmax(output, axis=2), dtype=np.uint8)
-        output_im = PILImage.fromarray(seg_pred)
-        output_im.putpalette(palette)
-        output_im.save(args.output_dir + '/' + "images/" +name[0] + '.png')
 
         seg_gt = np.asarray(label[0].numpy()[:size[0], :size[1]], dtype=np.int)
 

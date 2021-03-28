@@ -175,6 +175,7 @@ class SwiftNetResNet(nn.Module):
             res.append(dsn)
         return res
 
+
 class SpatialPyramidPooling(nn.Module):
     """
         SPP module is little different from ppm by inserting middle level feature to save the computation and  memory.

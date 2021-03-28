@@ -62,7 +62,7 @@ class ICNet(nn.Module):
     def __init__(self, nclass):
         super(ICNet, self).__init__()
         self.conv_sub1 = nn.Sequential(
-            ConvBnRelu(3, 32, 3,2,1),
+            ConvBnRelu(3, 32, 3, 2, 1),
             ConvBnRelu(32, 32, 3, 2, 1),
             ConvBnRelu(32, 64, 3, 2, 1)
         )
