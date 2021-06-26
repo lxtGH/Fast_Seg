@@ -51,10 +51,9 @@ or ['link']: [resnet50-deep.pth](https://drive.google.com/file/d/166ANLmlV5cQTkm
 7. Deeply based resnet runs slowly than torch pretrained resnet but with higher accuracy.
 8. The small network doesn't need ImageNet pretraining if training longer time on Cityscape.(Fast-SCNN paper)
 
-||||
+|(a) test image|(b) ground truth|(c) predicted result|
 |:--:|:--:|:--:|
 |![a](data/fig/frankfurt_000000_002196_leftImg8bit.png)|![b](data/fig/frankfurt_000000_002196_gtFine_color.png)|![c](data/fig/frankfurt_000000_002196_leftImg8bit_pred.png)|
-|(a) test image|(b) ground truth|(c) predicted result|
 
 # License
 This project is released under the Apache 2.0 license.
