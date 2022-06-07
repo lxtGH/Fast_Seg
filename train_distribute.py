@@ -19,6 +19,7 @@ import torch.backends.cudnn as cudnn
 from libs.utils.logger import Logger as Log
 from libs.utils.tools import adjust_learning_rate, all_reduce_tensor
 from libs.datasets.cityscapes import Cityscapes
+from libs.datasets.camvid import CamVidDataSet
 
 from libs.core.loss import CriterionOhemDSN, CriterionDSN, CriterionICNet, CriterionDFANet
 
@@ -58,7 +59,7 @@ def get_arguments():
     parser.add_argument("--data_list", type=str, default="./data/cityscapes/train.txt",
                         help="Path to the file listing the images in the dataset.")
     parser.add_argument("--data_set", type=str, default="cityscapes", help="dataset to train")
-    parser.add_argument("--arch", type=str, default="CascadeRelatioNet_res50", help="network architecture")
+    parser.add_argument("--arch", type=str, default="ICNet", help="network architecture")
     parser.add_argument("--ignore_label", type=int, default=255,
                         help="The index of the label to ignore during the training.")
     parser.add_argument("--input_size", type=int, default=832 ,
@@ -225,8 +226,14 @@ def main():
     batch_size = args.gpu_num * args.batch_size_per_gpu
     max_iters = args.num_steps * batch_size / args.gpu_num
     # set data loader
-    data_set = Cityscapes(args.data_dir, args.data_list, max_iters=max_iters, crop_size=input_size,
+    if args.data_set == "cityscapes":
+        data_set = Cityscapes(args.data_dir, args.data_list, max_iters=max_iters, crop_size=input_size,
                   scale=args.random_scale, mirror=args.random_mirror, mean=IMG_MEAN,vars=IMG_VARS, RGB= args.rgb)
+    elif args.data_set == "camvid":
+        data_set = CamVidDataSet(args.data_dir, args.data_list, max_iters=max_iters, crop_size=input_size,
+                  scale=args.random_scale, mirror=args.random_mirror, mean=IMG_MEAN,vars=IMG_VARS, RGB= args.rgb)
+    else:
+        raise "No such dataset support!"
 
     trainloader = data.DataLoader(
         data_set,
