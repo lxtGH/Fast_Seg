@@ -12,6 +12,7 @@ from math import ceil
 from PIL import Image as PILImage
 
 from libs.datasets.cityscapes import Cityscapes
+from libs.datasets.camvid import CamVidDataSet
 
 DATA_DIRECTORY = 'cityscapes'
 DATA_LIST_PATH = './data/cityscapes/val.lst'
@@ -213,9 +214,19 @@ def val():
         IMG_MEAN = np.array((104.00698793, 116.66876762, 122.67891434), dtype=np.float32)
         IMG_VARS = np.array((1, 1, 1), dtype=np.float32)
 
-    dataset = Cityscapes(args.data_dir, args.data_list, crop_size=(1024, 2048), mean=IMG_MEAN, vars=IMG_VARS,
+    # dataset = Cityscapes(args.data_dir, args.data_list, crop_size=(1024, 2048), mean=IMG_MEAN, vars=IMG_VARS,
+    #                     scale=False, mirror=False, RGB=args.rgb)
+    # set data loader
+    if args.data_set == "cityscapes":
+        data_set = Cityscapes(args.data_dir, args.data_list, crop_size=(1024, 2048), mean=IMG_MEAN, vars=IMG_VARS,
                         scale=False, mirror=False, RGB=args.rgb)
-    testloader = data.DataLoader(dataset, batch_size=1, shuffle=False, pin_memory=True)
+    elif args.data_set == "camvid":
+        data_set = CamVidDataSet(args.data_dir, args.data_list,  crop_size=(360, 480),
+                                  mean=IMG_MEAN, vars=IMG_VARS, scale=False, mirror=False, RGB=args.rgb)
+    else:
+        return
+
+    testloader = data.DataLoader(data_set, batch_size=1, shuffle=False, pin_memory=True)
 
     confusion_matrix = np.zeros((args.num_classes, args.num_classes))
 
