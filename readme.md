@@ -8,19 +8,18 @@ Mapillary, Camvid).
 
 ## News!!
 
-Checkout our Fast Segmentation Framework in [SFSegNets](https://github.com/lxtGH/SFSegNets). SFNet-ECCV-2020, SFNet-Lite, IJCV-2023
+Check out our Fast Segmentation Framework in [SFSegNets](https://github.com/lxtGH/SFSegNets). SFNet-ECCV-2020, SFNet-Lite, IJCV-2023
 
 # What is the purpose of this repo?
-This repo aims to do experiments and verify the idea of fast semantic segmentation and this repo
-also provide some fast models.
+This repo aims to do experiments and verify the idea of fast semantic segmentation, and this repo also provides some fast models.
 
-Our ICnet implementation achieves **74.5% mIoU** which is **5%** point higher than orginal paper. !!!!! Here: [model](https://drive.google.com/open?id=1A6z87_GCHEuKeZfbGpEvnkZ0POdW2Q_U)
+Our ICnet implementation achieves **74.5% mIoU**, which is **5%** point higher than the original paper. !!!!! Here: [model](https://drive.google.com/open?id=1A6z87_GCHEuKeZfbGpEvnkZ0POdW2Q_U)
 
 # Another Link For Accurate Seg:
-[GALD-net](https://github.com/lxtGH/GALD-Net) provides some state-of-art accurate methods implementation.
+[GALD-net](https://github.com/lxtGH/GALD-Net) provides some state-of-art accurate methods of implementation.
 
 # Model Zoo (Updating)
-1. ICNet:ICnet for real-time semantic segmentation on high-resolution images. ECCV-2018, [paper](https://arxiv.org/abs/1704.08545)
+1. ICNet: ICnet for real-time semantic segmentation on high-resolution images. ECCV-2018, [paper](https://arxiv.org/abs/1704.08545)
 2. DF-Net: Partial Order Pruning: for Best Speed/Accuracy Trade-off in Neural Architecture Search.CVPR-2019, [paper](https://arxiv.org/abs/1903.03777)
 3. Bi-Seg: Bilateral segmentation network for real-time semantic segmentation.ECCV-2018, [paper](https://arxiv.org/pdf/1808.00897.pdf)
 4. DFA-Net: Deep feature aggregation for real-time semantic segmentation.CVPR-2019,[paper](https://arxiv.org/abs/1904.02216)
@@ -63,11 +62,9 @@ or ['link']: [resnet50-deep.pth](https://drive.google.com/file/d/166ANLmlV5cQTkm
 This project is released under the Apache 2.0 license.
 
 
-
-
 # Acknowledgement
 
-Thanks to previous open-sourced repo:
+Thanks to the previous open-sourced repo:
 [Encoding](https://github.com/zhanghang1989/PyTorch-Encoding)
 [CCNet](https://github.com/speedinghzl/CCNet)
 [TorchSeg](https://github.com/ycszen/TorchSeg)
