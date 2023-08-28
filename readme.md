@@ -6,7 +6,11 @@ This repo try to implement **state-of-art fast semantic segmentation model** s o
 Mapillary, Camvid).
 
 
-# What is purpose of this repo?
+## News!!
+
+Checkout our Fast Segmentation Framework in [SFSegNets](https://github.com/lxtGH/SFSegNets). SFNet-ECCV-2020, SFNet-Lite, IJCV-2023
+
+# What is the purpose of this repo?
 This repo aims to do experiments and verify the idea of fast semantic segmentation and this repo
 also provide some fast models.
 
